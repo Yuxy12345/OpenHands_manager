@@ -7,7 +7,7 @@ def create_user_container(user_id):
     # 随机生成外部端口（示例范围 8000-9000）
     port = randint(8000, 9000)
 
-    # 创建容器（这里以nginx为例）
+    # 创建容器
     container = client.containers.run(
         name=f"OpenHands-{str(user_id)}"
         "docker.all-hands.dev/all-hands-ai/openhands:latest",
