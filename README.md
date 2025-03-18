@@ -59,8 +59,8 @@ OpenHands Manager 是一个用于管理和监控OpenHands资源的系统。由�
    启动后，通过访问 `http://localhost:3000`（或根据配置的端口）使用系统。
 
 7. **许可证**
-该项目使用Apache License授权。请参阅LICENSE文件以获取更多信息。
+   该项目使用Apache License授权。请参阅LICENSE文件以获取更多信息。
 
 8. **其他信息**
-如果你在使用过程中遇到问题，请通过GitHub Issues提交问题。
-如果你有任何建议或想法，欢迎通过Pull Request贡献代码。
+   如果你在使用过程中遇到问题，请通过GitHub Issues提交问题。
+   如果你有任何建议或想法，欢迎通过Pull Request贡献代码。
