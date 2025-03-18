@@ -1,0 +1,11 @@
+# Ignore .venv directory
+.venv
+
+# Ignore .vscode directory
+.vscode
+
+# Ignore node_modules directory
+node_modules
+
+# Ignore __pycache__ directories
+__pycache__
