@@ -1,8 +1,11 @@
-from models import User, db
+from model.model import User, db
 
 class UserDao:
     def get_by_id(self, user_id):
         return User.query.get(user_id)
+    
+    def get_by_username(self, username):
+        return User.query.filter_by(username=username).first()
     
     def get_all_users(self):
         return User.query.all()

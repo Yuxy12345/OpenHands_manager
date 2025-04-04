@@ -1,4 +1,4 @@
-from models import Container, User, db
+from model.model import Container, db
 
 class ContainerDao:
     def get_by_id(self, container_id):

@@ -16,3 +16,6 @@ indent_size = 2
 
 [*.py]
 indent_size = 4
+
+[*.vue, *.js, *.html]
+indent_size = 2

@@ -26,7 +26,7 @@
       <div class="auth-links">
         <a href="#" class="forgot-password">Forgot password?</a>
         <br />
-        <a href="/join" class="signup-link">New to OpenHands? Sign up</a>
+        <a href="/signup" class="signup-link">New to OpenHands? Sign up</a>
       </div>
     </div>
   </div>
@@ -42,10 +42,20 @@ const password = ref('')
 const router = useRouter()
 
 const login = async () => {
-  const res = await axios.post('/api/login', {
-    username: username.value,
-    password: password.value
-  })
+  try {
+    const res = await axios.post('/api/login', {
+      username: username.value,
+      password: password.value
+    })
+    localStorage.setItem('token', res.data.access_token)
+    router.push('/')
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.error) {
+      alert(error.response.data.error)
+    } else {
+      alert('An unexpected error occurred.')
+    }
+  }
 
   localStorage.setItem('token', res.data.access_token)
   router.push('/')

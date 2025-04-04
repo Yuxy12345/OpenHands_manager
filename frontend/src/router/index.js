@@ -1,12 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../components/Login.vue'
-import DashBoard from '../components/DashBoard.vue' // 导入仪表盘组件
+import DashBoard from '../components/DashBoard.vue'
+import Register from '../components/Register.vue'
+
+const white_list_path = ['/login', '/signup'] // 不需要登录的页面
 
 const routes = [
   {
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/signup',
+    name: 'Register',
+    component: Register
   },
   {
     path: '/',
@@ -38,16 +46,16 @@ router.beforeEach((to, from, next) => {
     }
   }
 
-  if (accessToken && to.path !== '/login') {
-    // 有token 但不是去 login页面
+  if (accessToken && !white_list_path.includes(to.path)) {
+    // 有token 但不是去白名单页面
     next()
   }
-  else if (accessToken && to.path === '/login') {
-    //用户已经登陆，不让访问Login登录界面
+  else if (accessToken && white_list_path.includes(to.path)) {
+    // 用户已经登陆，不让访问白名单页面
     next({ path: from.fullPath })
   }
-  else if (!accessToken && to.path !== '/login') {
-    // 未登录
+  else if (!accessToken && !white_list_path.includes(to.path)) {
+    // 未登录且不在白名单页面
     next('/login')
   }
   else {
