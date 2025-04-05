@@ -46,7 +46,7 @@ OpenHands Manager 是一个用于管理和监控OpenHands资源的系统。由�
    
    - 运行后端服务：
      ```bash
-     cd backend
+     cd backend/src
      flask run --port=5000
      ```
    - 运行前端开发服务器：

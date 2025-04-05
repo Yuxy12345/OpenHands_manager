@@ -19,12 +19,12 @@ def register():
         return jsonify({"error": "需要提供用户名和密码"}), 400
     # 查询数据库
     user = user_dao.get_by_username(username)
-    # 4. 用户名已存在
+    # 用户名已存在
     if user:
         return jsonify({"error": "用户名已存在"}), 400
-    # 6. 保存到数据库
+    # 保存到数据库
     user_dao.create_user(username=username, password=generate_password_hash(password))
-    # 7. 返回成功响应
+    # 返回成功响应
     return jsonify({"message": "注册成功"}), 201
 
 @auth_bp.route('/api/login', methods=['POST'])
@@ -45,7 +45,7 @@ def login():
     if not user:
         return jsonify({"error": "用户不存在"}), 401
 
-    if check_password_hash(user.password, password):
+    if not check_password_hash(user.password, password):
         return jsonify({"error": "密码错误"}), 401
 
     # 生成JWT令牌

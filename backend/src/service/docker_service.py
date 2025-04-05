@@ -14,15 +14,32 @@ def create_user_container(user_id):
     # 随机生成外部端口（示例范围 8000-9000）
     port = randint(8000, 9000)
 
-    # 创建容器
-    container = client.containers.run(
-        name=f"OpenHands-{str(user_id)}"
-        "docker.all-hands.dev/all-hands-ai/openhands:latest",
-        detach=True,
-        ports={'3000/tcp': port},
-        labels={"user_id": str(user_id)},
-        extra_hosts={'host.docker.internal': 'host-gateway'}
-    )
+    container = None
+    # 检查端口是否已被占用
+    while True:
+        try:
+            # 创建容器
+            container = client.containers.run(
+                name=f"OpenHands-{str(user_id)}",
+                image="docker.all-hands.dev/all-hands-ai/openhands:0.31",
+                detach=True,
+                ports={'3000/tcp': port},
+                labels={"user_id": str(user_id)},
+                extra_hosts={"host.docker.internal": "host-gateway"},
+                environment={
+                    "SANDBOX_RUNTIME_CONTAINER_IMAGE": "docker.all-hands.dev/all-hands-ai/runtime:0.31-nikolaik",
+                    "LOG_ALL_EVENTS": "true",
+                    "LLM_OLLAMA_BASE_URL": "http://host.docker.internal:11434"
+                },
+                volumes={
+                    "/var/run/docker.sock": {"bind": "/var/run/docker.sock", "mode": "rw"}
+                },
+            )
+            break
+        except docker.errors.APIError:
+            # 端口已被占用，重新生成
+            port = randint(8000, 9000)
+    
     return {
         "container_id": container.id,
         "port": port
