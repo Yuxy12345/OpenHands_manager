@@ -1,7 +1,12 @@
 # OpenHands Manager
 
 ## 项目介绍
-OpenHands Manager 是一个用于管理和监控OpenHands资源的系统。由于OpenHands当前只有单用户，故通过管理多容器的方式实现多用户使用。
+OpenHands Manager 是一个用于管理和监控OpenHands容器资源的系统。
+
+OpenHands是由All-Hands-AI团队开发的开源AI软件开发代理平台：
+https://github.com/All-Hands-AI/OpenHands
+
+由于OpenHands当前只有单用户，故通过管理多容器的方式实现多用户使用。
 
 ## 整体架构
 系统主要由以下几个模块构成：
