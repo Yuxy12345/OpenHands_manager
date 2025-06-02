@@ -39,7 +39,7 @@ OpenHands Manager 是一个用于管理和监控OpenHands资源的系统。由�
      ```
 
 4. **配置Docker环境**  
-   - 确保Docker Engine已安装并运行。
+   - 确保Docker已安装并运行。
    - 确保可以访问Docker镜像仓库。
 
 5. **启动项目**  
